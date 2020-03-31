@@ -1,0 +1,174 @@
+\documentclass[12pt,a4paper]{article}
+\PassOptionsToPackage{table}{xcolor}
+% \documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{cite}
+\usepackage{pgfgantt}
+\usepackage{todonotes}
+\usepackage[icelandic,UKenglish]{babel}
+\usepackage[UKenglish]{datetime}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+\usepackage[gen]{eurosym}
+\usepackage{multicol}
+\graphicspath{ {./images/} }
+\usepackage[titletoc,title]{appendix}
+\usepackage{pdfpages}
+% \usepackage{array}
+% \usepackage{pbox}
+% \usepackage{hanging}
+\usepackage{fancyhdr}
+% \usepackage{caption}
+% \usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{url}
+
+\usepackage{xspace}
+
+\usepackage{rotating}
+\usepackage{wrapfig}
+
+\usepackage{cite}
+\usepackage{textcomp}
+
+\usepackage[gen]{eurosym}
+\usepackage{hyperref}
+
+\usepackage{todonotes}
+
+\usepackage{gensymb}
+
+% \usepackage{draftwatermark}
+% \SetWatermarkText{draft v2}
+% \SetWatermarkScale{6}
+
+\fancypagestyle{plain}{ %
+  \fancyhf{} % remove everything
+  \renewcommand{\headrulewidth}{0pt} % remove lines as well
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\hyphenation{EISCAT}
+
+\input{abbrev}
+
+% \setlength{\topskip}{0mm}
+\setlength{\headheight}{15pt}
+% \setlength{\topmargin}{-5.4mm}
+% \setlength{\textheight}{230mm}
+\setlength{\textwidth}{180mm}
+\setlength{\oddsidemargin}{-5.0mm}
+% \setlength{\evensidemargin}{10.0mm}
+% \setlength{\captionmargin}{7mm}
+
+\title{
+{\bf Deliverable Document 3} \\
+Deployment of \ED data processing simulation}
+\author{E3DDS Team~\footnote{
+Anders Tjulin (EISCAT) {\tt anders.tjulin@eiscat.se};
+Ari Lukkarinen (CSC) {\tt ari.lukkarinen@csc.fi};
+Assar Westman (EISCAT) {\tt Assar.Westman@eiscat.se};
+Carl-Fredrik Enell (EISCAT) {\tt carl-fredrik.enell@eiscat.se};
+Dan Johan Jonsson (UiT) {\tt dan.jonsson@uit.no};
+Janos Nagy (NSC) {\tt fconagy@nsc.liu.se};
+Harri Hellgren (EISCAT) {\tt harri.hellgren@eiscat.se};
+Ingemar H\"{a}ggstr\"{o}m (EISCAT) {\tt ingemar.haggstrom@eiscat.se};
+Mattias Wadenstein (UmU) {\tt maswan@hpc2n.umu.se};
+% Roy Dragseth (UiT) {\tt roy.dragseth@uit.no};
+John White (NeIC) {\tt john.white@cern.ch}}}
+
+\date{\today}
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{\bf E3DDS project}
+\rhead{\bf 4: Data chain simulation}
+
+\maketitle
+\par\noindent
+\begin{minipage}{0.5\textwidth}
+  \includegraphics[scale=0.18]{NEIC_logo_screen_black.pdf}
+  %\vspace{-0.09in}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+  \hfill
+  %\includegraphics[scale=0.25]{EISCAT3Dlogo1.pdf}
+  % New official logo with green text
+  \includegraphics[width=0.75\linewidth]{e3d-logo-green-500px}
+\end{minipage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+\label{exec-summ}
+
+%\todo[inline]{Executive summary to be written at the end of the document writing process? Moved the current exec summary to introduction as that's what it was more like}
+
+Deliverable 4: The synergies with the NeIC NT1 operations. Once decisions on the software to be deployed and run as a simulation of the \ED operations, the possibilities of inclusion to the NT1 operations are studied.The object to be delivered is a document that details the services for \ED operations and those that may or may not be managed by NeIC NT1. This includes the services and service management (e.g. FitSM) required and the division of responsibilities.  Included are estimates of the staffing required to run these services and SLAs needed. 
+
+The study of the synergies between \ED online and NT1 operations may start once the software decisions are made in Deliverable 1 in the sixth month of the project.
+
+The process that follows is continuous and requires input from both \ED and NT1.
+
+Document delivered. See section 3.2.
+
+\section{Purpose}
+\label{purpose}
+
+\subsection{Intended Audience}
+
+The intended audience of this document is primarily NeIC and the \ED project management and staff in order to understand 
+
+\section{Introduction}
+\label{intro}
+
+\input{site_services}
+
+\section{\ED Operations}
+
+In these scenarios, the standard assumptions are:
+\bitm
+\item That the \ED data is replicated to two redundant data archives.
+\item Other assumptions...
+\eitm
+\subsection{Scenario 1}
+
+In this scenario \EC runs all the computing on-line and off-line services noted in Table~\ref{tab:services} except for the second redundant external data archive 
+i.e. the copy of the \ED data.
+
+\subsubsection{Risks}
+
+\bitm
+\item Large amount of FTEs required to run all services.
+\item Recruiting lots of skilled IT staff into EISCAT Scientific Association might fail
+\item Estimate of effort? 
+\eitm
+
+\subsubsection{Benefits}
+\bitm
+\item Hardware and staff are controlled through the normal EISCAT processes
+\eitm
+
+\section{NT1 Operations}
+
+
+% end of the document...
+\newpage
+\bibliography{main}{}
+\bibliographystyle{unsrt}
+
+
+\end{document}
