@@ -145,44 +145,50 @@ The radar data is used to control subsequent radar transmission and receiver loo
 Therefore the online computing services must run in real-time while the radar is transmitting.
 
 A service that is noted as ``run by" \EC is a service that required specialized in-house knowledge that is unlikely to be found elsewhere.
+The ``owned by" designation for a service refers to the management and ownership of the data in the service.
+For example, the ``Site data buffer" disk array could be operated by a non-\EC entity whereas the choices on the data to retain or remove from the disks are made by \EC.
+Another example could be the ``User portal web GUI" where typically operating a complex web portal is better left to experienced experts and the \EC users would access as clients where data retention etc is handled by central portal policies.
 
-A service that is noted ad ``owned by" \EC 
-
-A service can be run (operated) by an entity 
-
-Owned by
 The priority of a service is defined by: {\bf 1 High:} Without this service the radar system CANNOT be run; {\bf 2 Medium:} The radar can still run but data cannot be got out of the system; {\bf 3 Low:} Radar can run and data extracted but analysis and publishing not possible.
 
-Table~\ref{tab:services} gives the servic
-
+The following scenarios for running the \ED \einfra are considered.
 In these scenarios, the standard assumptions are:
 \bitm
 \item That the \ED data is replicated to two redundant data archives.
-\item Other assumptions...
+\item The \ED radars are planned to run 24/7~\footnote{this is a big caveat...}
 \eitm
+
 \subsection{Scenario 1}
 
-In this scenario \EC runs all the computing on-line and off-line services noted in Table~\ref{tab:services} except for the second redundant external data archive 
-i.e. the copy of the \ED data.
+In this scenario \EC runs all the computing on-line and off-line services noted in Table~\ref{tab:services} except for the second redundant external data archive i.e. the copy of the \ED data.
 
 \subsubsection{Risks}
 
 \bitm
 \item Large amount of FTEs required to run all services.
-\item Recruiting lots of skilled IT staff into EISCAT Scientific Association might fail
+\item Recruiting lots of skilled IT staff into \ESA might fail.
 \item Estimate of effort? 
 \eitm
 
 \subsubsection{Benefits}
 \bitm
-\item Hardware and staff are controlled through the normal EISCAT processes
+\item Hardware and staff are controlled through one set of \EC processes.
 \eitm
 
 \subsubsection{Cost Efficiency}
+\bitm
+\item It may not be cost efficient for one organization to run all the services. Finding people with enough skills to run and maintain a wide variety of services usually difficult.
+\eitm
 
 \subsubsection{Reliability}
+\bitm
+\item Reliability might suffer if enough people are not able to be hired to cover for holidays/sickness/job changes.
+\eitm
 
 \subsubsection{User Satisfaction}
+\bitm
+\item User satisfaction may be high as users are able to contact directly to \EC personnel for help with problems or questions.
+\eitm
 
 
 \section{NT1 Operations}
