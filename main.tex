@@ -72,8 +72,8 @@
 % \setlength{\captionmargin}{7mm}
 
 \title{
-{\bf Deliverable Document 3} \\
-Deployment of \ED data processing simulation}
+{\bf Deliverable Document 4} \\
+The synergies with the NeIC NT1 operations}
 \author{E3DDS Team~\footnote{
 Anders Tjulin (EISCAT) {\tt anders.tjulin@eiscat.se};
 Ari Lukkarinen (CSC) {\tt ari.lukkarinen@csc.fi};
@@ -178,6 +178,7 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \subsubsection{Cost Efficiency}
 \bitm
 \item It may not be cost efficient for one organization to run all the services. Finding people with enough skills to run and maintain a wide variety of services usually difficult.
+\item Replication of already existing services e.g. EGI Checkin.
 \eitm
 
 \subsubsection{Reliability}
@@ -188,11 +189,65 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \subsubsection{User Satisfaction}
 \bitm
 \item User satisfaction may be high as users are able to contact directly to \EC personnel for help with problems or questions.
+\item User satisfaction might be negatively impacted by a learning period for how to run many new services.
 \eitm
 
 
-\section{NT1 Operations}
+\subsection{Scenario 2}
+\label{ssec:scen2}
+NT1 runs all computing except inventory and FSRUs under a service contract.
 
+% \section{NT1 Operations}
+
+% List of services from the table that is a good match for NT1 to run...
+
+% Scenario 2
+
+Risks and benefits roughly the same.
+
+Recruiting easier.
+
+Cost benefits the same.
+
+Some services not suited to be run by NT1. Replicating services.
+
+Boundaries would have to be very tightly defined. SLAs.
+
+RBBF nodes... also tricky to run. Custom build of nodes. Tuning.
+
+Internal metadata catalogue?
+
+Experiment database... boundaries? Tricky boundary conditions... SLAs. Agents that program the FSRUs will pull data. 
+
+\subsection{Scenario 3}
+\label{ssec:scen3}
+
+EISCAT runs high, outsources medium/low to partners (Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N, metadata catalog at CSC, software management at UiT, etc).
+
+
+\subsection{Scenario 4}
+\label{ssec:scen4}
+
+EISCAT runs most, but outsources things with obvious synergies at other places (data archive, batch computing, web portals). 
+
+User Portal (with someone already running DIRAC for other communities)
+Identity management (EGI/INFN/etc that handles federated identities)
+User Compute (with someone that runs large batch computing)
+User software deployment (with someone that runs scientific computing)
+Data Archive, Data Staging, and Site Data Buffer could be synergistically run as one storage (NT1)
+Data product repository and publishing
+File catalog (with someone that is already running Rucio)
+
+\subsection{Scenario 5}
+\label{ssec:scen5}
+
+Like Section~\ref{ssec:scen3} but NT1 operates EISCAT's inhouse resources under a service contract.
+
+\subsection{Scenario 6}
+\label{ssec:scen6}
+
+
+Like Section~\ref{ssec:scen4} but NT1 operates EISCAT's inhouse resources under a service contract.
 
 % end of the document...
 \newpage
