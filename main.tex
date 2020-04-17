@@ -137,7 +137,14 @@ The intended audience of this document is primarily NeIC and the \ED project man
 \section{Introduction}
 \label{intro}
 
+\newlength{\mycolwidth}
+\setlength{\mycolwidth}{3.0cm}
 \input{site_services}
+\input{site_services_content}
+\end{tabular}
+\caption{The \einfra services required for \ED. \label{tab:services}}
+\end{table}
+\end{center}
 
 \section{\ED Operations}
 
@@ -254,14 +261,17 @@ The \nnt programme runs all computing services listed in Table~\ref{tab:services
 \subsection{Scenario 3}
 \label{ssec:scen3}
 
-EISCAT runs high, outsources medium/low to partners (Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N, metadata catalog at CSC, software management at UiT, etc).
+In this scenario \EC EISCAT runs the high-priority services and outsources medium/low to their partners.
+Table~\ref{tab:services:s3} shows the services that \EC would run.
+It can be seen that these services are those that \EC is most likely to have expertise and interest to run at 
+(Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N, metadata catalog at CSC, software management at UiT, etc).
 
-Now remake the table?
-
-How practical is this?
-
-\input{site_services_s3}
-
+\input{site_services}
+\input{site_services_content_s3}
+\end{tabular}
+\caption{The High-priority \einfra services run by \EC in Scenario 3. \label{tab:services:s3}}
+\end{table}
+\end{center}
 
 \subsubsection*{Risks}
 \bitm
