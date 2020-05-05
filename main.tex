@@ -87,7 +87,7 @@ Harri Hellgren (EISCAT) {\tt harri.hellgren@eiscat.se};
 Ingemar H\"{a}ggstr\"{o}m (EISCAT) {\tt ingemar.haggstrom@eiscat.se};
 Mattias Wadenstein (UmU) {\tt maswan@hpc2n.umu.se};
 % Roy Dragseth (UiT) {\tt roy.dragseth@uit.no};
-John White (NeIC) {\tt john.white@cern.ch}}}
+John White (NeIC) {\tt john.white@cern.ch}}}https://www.overleaf.com/project/5df3a17505b1d60001bfd09b
 
 \date{\today}
 
@@ -139,12 +139,13 @@ The intended audience of this document is primarily NeIC and the \ED project man
 
 \newlength{\mycolwidth}
 \setlength{\mycolwidth}{3.0cm}
+
 \input{site_services}
-\input{site_services_content}
-\end{tabular}
-\caption{The \einfra services required for \ED operations. \label{tab:services}}
-\end{table}
-\end{center}
+% \input{site_services_content}
+% \end{tabular}
+% \caption{The \einfra services required for \ED operations. % % \label{tab:services}}
+% \end{table}
+% \end{center}
 
 \section{\ED Operations}
 
@@ -181,12 +182,16 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \bitm
 \item Large amount of FTEs required to run all services.
 \item Recruiting lots of skilled IT staff into \ESA might fail.
-\item Estimate of effort? 
+\item Under-estimate of effort. 
+\item Running during vacation time. Full coverage during vacation. 24/7 on-call.
+\item GDPR etc.
+\item Incident impact higher if everything in one place.
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
 \item Hardware and staff are controlled through one set of \EC processes.
+\item No need to make special agreements with externals for data confidentiality.
 \eitm
 
 \subsubsection*{Cost Efficiency}
@@ -197,7 +202,8 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 
 \subsubsection*{Reliability}
 \bitm
-\item Reliability might suffer if enough people are not able to be hired to cover for holidays/sickness/job changes.
+\item Easier for operators to communicate... risks in distributed case.
+\item Everything in the startup phase for first years.
 \eitm
 
 \subsubsection*{User Satisfaction}
@@ -212,32 +218,39 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \label{ssec:scen2}
 
 The \nnt programme runs all computing services listed in Table~\ref{tab:services} except the \ED inventory system and FSRUs under a service contract.
+On computers in Skibotn... write a big service contract with NT1. 
+Done from NeIC NT1 into Kiruna.
+Could be IBM Global services?
 
 \subsubsection*{Risks}
 \bitm
-\item Large amount of FTEs required to run all services.
+\item REMOVE. Quantify. Large amount of FTEs required to run all services.
 \item Recruiting lots of skilled IT staff into NT1 might fail.
+\item Some services do not have synergies with current \nnt.
+\item Complicated SLA negotiations. Something essential not covered by agreement.
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
 \item \EC controls the services most familiar for them i.e. the FSRUs and the inventory databases.
+% inventory FSRU. scan. MAC address etc. connect. maintenance. computers etc.
 \item Hardware and staff for running all other services are controlled through one set of \nnt processes.
-\item Recruiting into the \nnt will be easier.
+\item Recruiting into the \nnt will be easier. Distributed. Competence pool over the whole Nordics. Good synergies with home institutes.
+\item Experience in writing service contracts for similar operations.
+\item \EC would be free to concentrate on running their critical services.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
 \item As with Scenario 1, it may not be cost efficient for one organization (\nnt) to run all the services. Finding people with enough skills to run and maintain a wide variety of services usually difficult.
 \item Also runs the risk of replication of already existing services run by other \einfra projects.
-\item Some services are not suited to be run by NT1.
+\item Some services does not have synergies with other NT1 activities.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
 \item The reliability of some the services should be improved as the \ED addition would be an increment on already existing \nnt services.
 \item Services that are not part of the \nnt core services would not necessarily be more reliable in this scenario.
-\item \EC would be free to concentrate on running their critical services.
 \eitm
 
 % Risks and benefits roughly the same.
@@ -252,8 +265,10 @@ The \nnt programme runs all computing services listed in Table~\ref{tab:services
 \subsubsection*{User Satisfaction}
 \bitm
 \item \ED User satisfaction may be lowered as users will be required to contact an external organization for help with problems or questions. Not directly to other \EC colleagues.
-\item User satisfaction might be negatively impacted by a learning period for how to run many new services.
-\item After the initial learning period, the user satisfaction should improve to a level higher than if \EC was to run all services (Scenario 1).
+\item User satisfaction might be negatively impacted by a learning period for how to run many new services. Same as scenario 1. NT1 not expert in some services. Should be a smaller numbers.
+\item CORRECT THIS. After the initial learning period, the user satisfaction should improve to a level higher than if \EC was to run all services (Scenario 1).
+NT1 may have easier time recruiting staff and existing skills.
+Being able to draw on wider range of experience in running services should improve the user satisfaction.
 \eitm
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -267,9 +282,7 @@ Table~\ref{tab:services:s3} shows the services that \EC would run.
 Table~\ref{tab:services:s3a} gives the low and medium priority services run by \EC partners.
 It can be seen that these services are those that \EC is most likely to have expertise and interest to run at 
 (Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N, metadata catalog at CSC, software management at UiT, etc).
-
 \input{site_services_s3_bar}
-
 
 \subsubsection*{Risks}
 \bitm
