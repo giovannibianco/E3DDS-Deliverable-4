@@ -87,7 +87,7 @@ Harri Hellgren (EISCAT) {\tt harri.hellgren@eiscat.se};
 Ingemar H\"{a}ggstr\"{o}m (EISCAT) {\tt ingemar.haggstrom@eiscat.se};
 Mattias Wadenstein (UmU) {\tt maswan@hpc2n.umu.se};
 % Roy Dragseth (UiT) {\tt roy.dragseth@uit.no};
-John White (NeIC) {\tt john.white@cern.ch}}}https://www.overleaf.com/project/5df3a17505b1d60001bfd09b
+John White (NeIC) {\tt john.white@cern.ch}}}
 
 \date{\today}
 
@@ -217,39 +217,43 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \subsection{Scenario 2}
 \label{ssec:scen2}
 
-The \nnt programme runs all computing services listed in Table~\ref{tab:services} except the \ED inventory system and FSRUs under a service contract.
-On computers in Skibotn... write a big service contract with NT1. 
-Done from NeIC NT1 into Kiruna.
-Could be IBM Global services?
+The \nnt programme runs all computing services listed in Table~\ref{tab:services} except the \ED inventory system
+and FSRUs under a service contract.
+In this scenario, the services are still physically located at the central site (nominally Skibotn) and a
+service contract is written with \nnt to run them.
+This scenario could also apply to a commercial computing provider e.g. IBM Global services.
 
 \subsubsection*{Risks}
 \bitm
-\item REMOVE. Quantify. Large amount of FTEs required to run all services.
+% \item REMOVE. Quantify. Large amount of FTEs required to run all services.
 \item Recruiting lots of skilled IT staff into NT1 might fail.
-\item Some services do not have synergies with current \nnt.
-\item Complicated SLA negotiations. Something essential not covered by agreement.
+\item Some \ED required services do not have synergies with current \nnt.
+\item There would need to be complicated SLA negotiations to cover all services.
+  Something essential might not covered by the agreement(s).
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
-\item \EC controls the services most familiar for them i.e. the FSRUs and the inventory databases.
-% inventory FSRU. scan. MAC address etc. connect. maintenance. computers etc.
-\item Hardware and staff for running all other services are controlled through one set of \nnt processes.
-\item Recruiting into the \nnt will be easier. Distributed. Competence pool over the whole Nordics. Good synergies with home institutes.
-\item Experience in writing service contracts for similar operations.
+\item \EC would retain the control of the fundamental services most familiar for them i.e. operation of the FSRUs and the inventory databases.
+\item Hardware and staff for running all other services are controlled through a single set of \nnt processes.
+\item Recruiting into the \nnt will be easier as it is a distributed operation that can accesss a competence pool over the
+  whole Nordic area. There are good synergies with home institutes of \nnt members.
+\item There is prior experience in writing service contracts for similar operations.
 \item \EC would be free to concentrate on running their critical services.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
-\item As with Scenario 1, it may not be cost efficient for one organization (\nnt) to run all the services. Finding people with enough skills to run and maintain a wide variety of services usually difficult.
-\item Also runs the risk of replication of already existing services run by other \einfra projects.
-\item Some services does not have synergies with other NT1 activities.
+\item As with Scenario 1, it may not be cost efficient for one organization (\nnt) to run all the services.
+  Finding enough people with the necessary skills to run and maintain a wide variety of services is usually difficult.
+\item There is the risk of replication of already existing services run by other \einfra projects.
+\item Some of the required \ED services does not have synergies with existing \nnt activities.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-\item The reliability of some the services should be improved as the \ED addition would be an increment on already existing \nnt services.
+\item The reliability of some the services will be improved as the \ED addition would be an increment
+  on already existing \nnt services in production.
 \item Services that are not part of the \nnt core services would not necessarily be more reliable in this scenario.
 \eitm
 
@@ -264,11 +268,12 @@ Could be IBM Global services?
 
 \subsubsection*{User Satisfaction}
 \bitm
-\item \ED User satisfaction may be lowered as users will be required to contact an external organization for help with problems or questions. Not directly to other \EC colleagues.
-\item User satisfaction might be negatively impacted by a learning period for how to run many new services. Same as scenario 1. NT1 not expert in some services. Should be a smaller numbers.
-\item CORRECT THIS. After the initial learning period, the user satisfaction should improve to a level higher than if \EC was to run all services (Scenario 1).
-NT1 may have easier time recruiting staff and existing skills.
-Being able to draw on wider range of experience in running services should improve the user satisfaction.
+\item \ED User satisfaction may be lowered as users will be required to more formally contact an external
+  organization for help with problems or questions. Not contacting directly to other \EC colleagues.
+\item User satisfaction might be negatively impacted by a learning period for how to run many new services.
+  This is the same as in scenario 1. % \nnt is not expert in some services. Should be a smaller numbers.
+\item As \nnt may have an easier time recruiting staff and using existing skills,
+  being able to draw on wider range of experience in running services should improve the user satisfaction.
 \eitm
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,82 +284,91 @@ Being able to draw on wider range of experience in running services should impro
 In this scenario \EC runs the high-priority services and outsources medium/low to their partners.
 Table~\ref{tab:services:s3} shows the services that \EC would run.
 \input{site_services_s3}
+The services listed in Table~\ref{tab:services:s3} can be seen to be more likely, and suitable, to be run at the
+Skibotn site.
 Table~\ref{tab:services:s3a} gives the low and medium priority services run by \EC partners.
 It can be seen that these services are those that \EC is most likely to have expertise and interest to run at 
-(Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N, metadata catalog at CSC, software management at UiT, etc).
+(Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N,
+metadata catalog at CSC, software management at UiT, etc).
 \input{site_services_s3_bar}
-
+The services listed in Table~\ref{tab:services:s3a} do not necessarily need to be physically located at the \ED central site. 
 \subsubsection*{Risks}
 \bitm
-  \item Services running in different administrative regimes.
-  \item Some services maybe outsourced to unsuited partners.
+  \item Hardware and staff for running all services will be operating in different administrative regimes.
+   \item Some services maybe outsourced to unsuited partners.
+   \item SLAs need to be defined between multiple entities.
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
-\item Services are run by organizations best suited and already operating such services.
+  \item \EC would retain the control of the high-priority services.
+  \item \EC would not need to run unfamiliar services.
+  \item Services outsourced to suitable partners are run by organizations best suited and already operating such services.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
-\item Individuals do not have to be re-trained as already familiar with the services.
-\item The organizations can take in the \ED load as a fractional increase on their existing workload.
+  \item Cost efficiency improved if operators do not have to be re-trained if they are already familiar with the services.
+  \item Cost efficiency improved if the partners can take in the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-\item Services are run by individuals already familiar with the services.
-\item Organizations can improve the uptime by taking the the \ED load as a fractional increase on their existing workload.
+  \item Reliability improved if services are run by operators already familiar with the services.
+  \item Organizations can improve the uptime by taking the the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{User Satisfaction}
 \bitm
-\item May be impacted as users may have to contact service providers outside the \EC organization.
+  \item May be impacted as users may have to formally contact service providers outside the \EC organization.
   \item Hopefully the service operators will be able to solve problems quickly due to experience.
 \eitm
 
 \subsection{Scenario 4}
 \label{ssec:scen4}
 
-Scenario 4 has \EC running most of the services but outsources services with
-obvious synergies to other organizations.
-The criteria being that the organization already runs the required service in their normal
-operations.
+In scenario 4, \EC runs most of the services but outsources services with ``obvious'' synergies to other organizations.
+The criteria here is that an organization already runs the service required by \ED in their current normal operations.
+For example, the following services run by other organizations can be considered:
 \bitm
-\item DIRAC User Portal is already operated for other communities at RAL;
-\item Identity management (EGI/INFN/etc handle federated identities for WLCG and others)
-\item User Compute at a partner that already operates large batch/cloud services;
-\item User software deployment (with someone that runs scientific computing)
-\item Data Archive, Data Staging, and Site Data Buffer could be synergistically run as one storage by NeIC NT1;
-\item Data product repository and publishing;
-\item File catalog (with someone that is already running Rucio)
-  \eitm
+  \item DIRAC User Portal~\cite{dirac} is already operated for other communities at RAL;
+  \item Identity management handled by EGI/INFN/etc for WLCG and others;
+  \item User Compute at a centre that already operates large batch/cloud services;
+  \item User software deployment (with someone that runs scientific computing)
+  \item Data Archive, Data Staging, and Site Data Buffer could be synergistically run as one storage by NeIC NT1;
+  \item Data product repository and publishing;
+  \item File catalog operated by an institute that is already running Rucio~\cite{rucio}
+\eitm
   
 \subsubsection*{Risks}
 \bitm
-\item Services running in different administrative regimes.
+\item Services are running in different administrative regimes.
+  \item SLAs that are not well-defined. 
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
 \item Services are run by organizations best suited and already operating such services.
+  \item As organizations already operate the services in production mode, 24/7 coverage is more likely to be achieved.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
-\item Individuals do not have to be re-trained as already familiar with the services.
+\item Operators do not have to be re-trained as already familiar with the services.
 \item The organizations can take in the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-\item Services are run by individuals already familiar with the services.
+\item Reliability improved as the services are run by operators already familiar with the services.
 \item Organizations can improve the uptime by taking the the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{User Satisfaction}
 \bitm
-\item The User Satisfaction should not be negatively impacted as the services are now run by organizations suited to the tasks.
+\item User satisfaction may be impacted as \EC users will still have to formally contact external oprgnizations for problems/requests.
+\item The User Satisfaction should not be negatively impacted by service interruptions as the services are now
+  run by organizations already suited to the task.
 \eitm
   
 \subsection{Scenario 5}
