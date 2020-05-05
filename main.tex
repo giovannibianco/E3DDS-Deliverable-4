@@ -174,6 +174,13 @@ The {\bf Cost Efficiency} refers to how much effort an organization will have to
 {\bf Reliability} describes whether the service up-time can be maintained in order to process and serve the data from the expected duty cycle of the radar operations.
 In these scenarios the ``users" are the consumers of the \ED data and the comments on {\bf User Satisfaction} evaluates how this would be affected by each scenario.
 
+The \nnt is one of 14 regional computing centres of the Worldwide LHC Computing Grid:
+the international e-infrastructure built to provide computing and storage for the Large Hadron Collider at CERN.
+This Nordic solution is unique in being distributed across four countries: Denmark, Finland, Norway and Sweden.
+\nnt is primarily an \einfra operational programme that receives data as part of the World-Wide LHC Computing Grid~\cite{wlcg} (WLCG).
+This data is archived and also served to scientific users for analysis.
+The data must be orchestrated over the many computing centres, disks and tapes all over Scandinavia.
+
 \subsection{Scenario 1}
 
 In this scenario \EC runs all the computing on-line and off-line services noted in Table~\ref{tab:services} except for the second redundant external data archive i.e. the copy of the \ED data.
@@ -348,7 +355,7 @@ For example, the following services run by other organizations can be considered
 
 \subsubsection*{Benefits}
 \bitm
-\item Services are run by organizations best suited and already operating such services.
+  \item Services are run by organizations best suited and already operating such services.
   \item As organizations already operate the services in production mode, 24/7 coverage is more likely to be achieved.
 \eitm
 
@@ -374,50 +381,96 @@ For example, the following services run by other organizations can be considered
 \subsection{Scenario 5}
 \label{ssec:scen5}
 
-Scenario 5 is similar to the Section~\ref{ssec:scen3} but in this case
-NeIC NT1 runs the high-priority services under a service contract and \EC outsources the medium and low priority services to partners.
-Therefore NeIC NT1 is running most of the online data production and the offline services are run by partners other than \EC.
-The assumption that \EC will operate the FSRUs and 
+Scenario 5 is similar to (Section~\ref{ssec:scen3}) but in this case \nnt runs the high-priority services under a
+service contract and \EC outsources the medium and low priority services to partners.
+Therefore NeIC NT1 is running the online data production and the offline services are run by partners other than \EC.
+The assumption that \EC will operate the FSRUs and inventory system still holds.
 
 \subsubsection*{Risks}
 \bitm
-\item The operations setup of NeIC NT1 may not be suitable for running
+  \item The operations setup of NeIC NT1 is probably not suitable for running online data production.
+  \item SLAs for online data production may be hard to achieve.
+  \item Recruiting lots of skilled IT staff into \nnt for online operations might fail.
+  \item Under-estimate by \nnt of amount of FTEs required to run online services.
+  \item Other medium and low priority services may be outsourced to unsuitable partners.
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
-\item 
+\item \EC can concentrate on core scientific operations.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
-\item 
+\item Cost efficiency for high priority services run by \nnt will probably not improve.
+  These are not an incremental addition to an alrwady-existing operation.
+  \item Cost efficiency for medium and low priority services may be improved if operators do not have to be re-trained if they are already familiar with the services.
+  \item Cost efficiency for medium and low priority services may beimproved if the partners can take in the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-\item 
+  \item Reliability for medium and low priority services may be improved as the services are run by operators already familiar with the services.
+  \item Reliability for high priority services run by \nnt as these services are not familiar.
 \eitm
 
 \subsubsection*{User Satisfaction}
 \bitm
-\item 
+\item User satisfaction may suffer as \EC users will have to formally contact external organizations for problems/requests.
+  \item Without a clear case for improved reliability user satisfaction will suffer.
 \eitm
 
 \subsection{Scenario 6}
 \label{ssec:scen6}
 
-Like Section~\ref{ssec:scen4} but NT1 operates EISCAT's inhouse resources under a service contract.
-Dedicated services run somewhere else.
-Run by a different team.
-Hired by EISCAT or service contract with NT1?
-Where you put the staff.
+In scenario 6 \nnt operates \EC{s} in-house services, that do not have obvious synergy with the \EC partners,
+under a service contract.
+This scenario has similarities to Section~\ref{ssec:scen2} and Section~\ref{ssec:scen4} but
+in this case \nnt operates EISCAT's inhouse resources under a service contract.
+Examples of the \ED service that have obvious synergies with partners are given in Section~\ref{ssec:scen4}.
+The in-house \ED services that would be run by \nnt would be the high priority online data production.
 
-Odd number options are for dedicated services
+% Dedicated services run somewhere else.
+% Run by a different team.
+% Hired by EISCAT or service contract with NT1?
+% Where you put the staff.
+% Odd number options are for dedicated services
+% Even number EISCAT writes service contract with SLA for outsourcing.
+% NT1 would operate the services that do not have obvious synergy with the EISCAT ``partners".
 
-Even number EISCAT writes service contract with SLA for outsourcing.
+\subsubsection*{Risks}
+\bitm
+  \item The operations setup of NeIC NT1 is probably not suitable for running online data production.
+  \item SLAs for online data production may be hard to achieve.
+  \item Recruiting lots of skilled IT staff into \nnt for online operations might fail.
+  \item Under-estimate by \nnt of amount of FTEs required to run online services.
+  \item Other medium and low priority services may be outsourced to unsuitable partners.
+\eitm
 
-NT1 would operate the services that do not have obvious synergy with the EISCAT ``partners".
+\subsubsection*{Benefits}
+\bitm
+\item \EC can concentrate on core scientific operations.
+\eitm
+
+\subsubsection*{Cost Efficiency}
+\bitm
+\item Cost efficiency for high priority services run by \nnt will probably not improve.
+  These are not an incremental addition to an alrwady-existing operation.
+  \item Cost efficiency for medium and low priority services may be improved if operators do not have to be re-trained if they are already familiar with the services.
+  \item Cost efficiency for medium and low priority services may beimproved if the partners can take in the \ED load as a fractional increase on their existing workload.
+\eitm
+
+\subsubsection*{Reliability}
+\bitm
+  \item Reliability for medium and low priority services may be improved as the services are run by operators already familiar with the services.
+  \item Reliability for high priority services run by \nnt as these services are not familiar.
+\eitm
+
+\subsubsection*{User Satisfaction}
+\bitm
+\item User satisfaction may suffer as \EC users will have to formally contact external organizations for problems/requests.
+  \item Without a clear case for improved reliability user satisfaction will suffer.
+\eitm
 
 \subsubsection*{Risks}
 \bitm
