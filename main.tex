@@ -48,6 +48,17 @@
 
 \usepackage{gensymb}
 
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usetikzlibrary{matrix}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+
+\usepackage{longtable,geometry}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
 % \usepackage{draftwatermark}
 % \SetWatermarkText{draft v2}
 % \SetWatermarkScale{6}
@@ -72,6 +83,26 @@
 \setlength{\oddsidemargin}{-5.0mm}
 % \setlength{\evensidemargin}{10.0mm}
 % \setlength{\captionmargin}{7mm}
+
+%% For use in the summary table and scenario factors...
+%% strong positive, mild positive, neutral, mild negative, strong negative
+
+\iffalse
+\newcommand{\SP}{\cellcolor{green!75} \bf \cmark} % Strong positive
+\newcommand{\MP}{\cellcolor{green!50} \bf \cmark} % mild positive
+\newcommand{\NU}{\cellcolor{yellow!25} \bf --} % neutral
+\newcommand{\MN}{\cellcolor{red!50} \bf \xmark} % mild negative
+\newcommand{\SN}{\cellcolor{red!75} \bf \xmark} % strong negative
+\fi
+
+\newcommand{\SP}{\cellcolor{blue!75} \bf \hspace{\facc\colwid}\cmark} % Strong positive
+\newcommand{\MP}{\cellcolor{blue!25} \bf \hspace{\facc\colwid}\cmark} % mild positive
+\newcommand{\NU}{\cellcolor{yellow!25} \bf \hspace{\facc\colwid}--} % neutral
+\newcommand{\MN}{\cellcolor{red!25} \bf \hspace{\facc\colwid}\xmark} % mild negative
+\newcommand{\SN}{\cellcolor{red!75} \bf \hspace{\facc\colwid}\xmark} % strong negative
+
+\newcommand{\NEG}{{\color{red!75} \xmark}}
+\newcommand{\POS}{{\color{blue!75} \cmark}}
 
 \title{
 {\bf Deliverable Document 4} \\
@@ -119,23 +150,58 @@ John White (NeIC) {\tt john.white@cern.ch}}}
 
 %\todo[inline]{Executive summary to be written at the end of the document writing process? Moved the current exec summary to introduction as that's what it was more like}
 
-Deliverable 4: The synergies with the \nnt operations. Once decisions on the software to be deployed and run as a simulation of the \ED operations, the possibilities of inclusion to the NT1 operations are studied.The object to be delivered is a document that details the services for \ED operations and those that may or may not be managed by \nnt. This includes the services and service management (e.g. FitSM) required and the division of responsibilities.  Included are estimates of the staffing required to run these services and SLAs needed. 
-
-The study of the synergies between \ED online and NT1 operations may start once the software decisions are made in Deliverable 1 in the sixth month of the project.
-
-The process that follows is continuous and requires input from both \ED and NT1.
-
-Document delivered. See section 3.2.
-
+This document describes the possible scenarios of deploying the \ED \einfra services with \nnt and other partners.
+The document details the services for \ED operations and those suitable or not to be run by \nnt or other partners.
+The most beneficial deployment scenario is identified according to the factors considered in this document: Risks; Benefits; Cost Efficiency; Reliability; User Satisfaction.
+Steps to remedy the negative aspects of the most beneficial scenario are presented including the Service LeveL Agreements (SLAs) needed, service management (e.g. FitSM) required and the division of responsibilities.  
+Estimates of the staffing effort required to run the \ED services are presented as well as the effort to run \nnt. 
+% Carl-Fredrik: As discussed in the Zoom meeting Dan will add some notes on FitSM to D3 that can be cited
+% Dan: maybe move that section into this document?
 \section{Purpose}
 \label{purpose}
 
-\subsection{Intended Audience}
+This document shall function as a guideline for both \EC, their partners and NeIC in order to understand how the \ED \einfra services can be deployed.
+This document does not intend to draw hard conclusions on the deployment model, but gives an objective opinion on a series of factors to consider in each deployment scenario.
 
-The intended audience of this document is primarily NeIC and the \ED project management and staff in order to understand 
+\subsection{Intended Audience}
+\label{ssec:audiance}
+
+The intended audience of this document is \ED project management and \EC partners.
+in order to understand the deployment options for the \ED \einfra services.
+This document can be
+most efficiently deployed.
+% Carl-Fredrik: How do we best distribute this to project management (Johan Svensson and Craig)?
+% They use MS Teams, MS Word / Office 365
 
 \section{Introduction}
 \label{intro}
+
+The \ESA will establish \ED, a flexible multistatic high power radar system, that will enable comprehensive three-dimensional vector observations of the atmosphere and ionosphere above Northern Fenno-Scandinavia.  
+
+The use of new radar technology, combined with the latest advances within digital signal processing,
+will achieve ten times higher temporal and spatial resolution than
+obtained by the present \EC radar systems. 
+For the first time, \EC will also be able to measure continuously.  
+The flexibility of the \ED system will enable scientists to investigate upper-atmospheric and 
+ionospheric phenomena at both large and small scales unobtainable by the present systems.
+
+In its first stage, the \ED system will consist of three \RSs:
+one having both 
+%% {\bf T}ransmitting ({\bf TX}) and {\bf R}eceiving ({\bf RX})
+{T}ransmitting  and {R}eceiving 
+capabilities and two with only Receiving capability.  
+The sites will
+be remote-controlled and located in three different countries (Finland,
+Norway and Sweden) and will be separated geographically by
+approximately 130~km.  
+Two additional receiver sites, at distances 200-250~km from the transmit site, 
+are planned for the full \ED system at a later stage.
+
+The \ED radar is planned to be operated at near full-time~\footnote{The definition of the up-time of the \ED radar is still to be determined.} (24/7) up-time and able to serve processed data to users in near real-time.
+In order for this to be achieved a set of computing, storage and network services~\footnote{Generally described as \einfra.} must be put in place.
+Some of these \einfra services operate in real-time i.e. must process data when the radar is running and the antennas are receiving signals.
+Other \einfra services can be considered as more in the background and
+do not have to be run in real-time e.g. data management services serving high-level processed data to \ED users.
 
 \newlength{\mycolwidth}
 \setlength{\mycolwidth}{3.0cm}
@@ -147,7 +213,7 @@ The intended audience of this document is primarily NeIC and the \ED project man
 % \end{table}
 % \end{center}
 
-\section{\ED Operations}
+\section{\ED \einfra Services}
 
 The services shown in Table~\ref{tab:services} are those estimated, at the time of writing, to be necessary for \ED to: acquire data; process online and offline; produce data products in order to steer the radar; serve data to users for analysis.
 
@@ -181,36 +247,53 @@ This Nordic solution is unique in being distributed across four countries: Denma
 This data is archived and also served to scientific users for analysis.
 The data must be orchestrated over the many computing centres, disks and tapes all over Scandinavia.
 
+% Add a small subsection of "dedicated services" and "shared infrastructure" to make
+% the divisions between scenarios a bit more obvious? RB nodes and a tape library
+% for long-term storage are probably good examples -MW
+
 \subsection{Scenario 1}
+\label{ssec:scen1}
 
 In this scenario \EC runs all the computing on-line and off-line services noted in Table~\ref{tab:services} except for the second redundant external data archive i.e. the copy of the \ED data.
 
 \subsubsection*{Risks}
 \bitm
-\item Large amount of FTEs required to run all services.
-\item Recruiting lots of skilled IT staff into \ESA might fail.
-\item Under-estimate of effort. 
-\item Running during vacation time. Full coverage during vacation. 24/7 on-call.
-\item GDPR etc.
-\item Incident impact higher if everything in one place.
+% \item Large amount of FTEs required to run all services.
+% \item Recruiting the required IT staff with the correct skills into \ESA might fail. % \NEG %Carl-Fredrik: may also require higher levels of security certification of Eiscat staff?
+\item {There is a risk for \ESA not being able to recruit the required \einfra staff with the correct skills into one organization.}
+% \item Under-estimate of effort. 
+% \todo[inline,color=red]{JW: I would argue the preceding two statements can be made into one. There is a risk for \ESA not being able to recruit the required \einfra staff with the correct skills into one organization.}
+\item Retaining an excess of staff for full 24/7 coverage of \ED services during vacations/illnesses/change of employment.
+\item New security certifications of staff to operate public-facing services. Includes GDPR etc. 
+%Carl-Fredrik: the "etc" probably includes security certifications etc then
+\item Incident impact higher if everything in one place. Single point of failure. %SPOF
+% \todo[inline]{Mattias: Running user compute etc close to the instrument is an IT security risk, so even if there on a average basis is lots of CPU capacity free on the RB nodes, it might be safer to run all computing at an external partner in order to lock down the site and raw data processing better - risk in scenario 1 and 2 or benefit to the other scenarios?}
+\item Running user-accessible computing close to the instrument is an IT security risk.
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
 \item Hardware and staff are controlled through one set of \EC processes.
-\item No need to make special agreements with externals for data confidentiality.
+\item No need to make special agreements with external parties for data confidentiality. %But again EISCAT staff may need security clearance or certifications
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
-\item It may not be cost efficient for one organization to run all the services. Finding people with enough skills to run and maintain a wide variety of services usually difficult.
-\item Replication of already existing services run by other \einfra projects e.g. EGI Checkin~\cite{egi-checkin}.
+\item Usually it is not cost efficient for one organization to run all the services. Many varying services will require fractional amounts of effort.
+% Finding people with enough skills to run and maintain a wide variety of services usually difficult.
+% \todo[inline]{Stronger emphasis on how it'll be a big extra cost service replication, especially complex services (both here and in scenario 2}
+\item Cost efficiency will be impacted by the extra cost required to start and run complex services in production mode. 
+Especially when considering this will replicate already existing services being run by other \einfra projects e.g. EGI Checkin~\cite{egi-checkin}.
+% \todo[inline]{Low synergies with current eiscat work (mirror of scenario 2 cost efficiency)}
+\item Some services required (e.g. AAI or Web portals) for \ED operations do not have synergies with the current \EC computing expertise.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-\item Easier for operators to communicate... risks in distributed case.
-\item Everything in the startup phase for first years.
+\item Reliability improved as it is easier for operators to communicate within one organization. %
+%% \todo[inline,color=red]{JW: Converse must be noted as a risk in the in distributed cases.}
+\item Reliability will be impacted in the startup phase for first years as operators will not be familiar with operating services in production mode.
+%% \todo[inline,color=red]{JW: Converse must be noted as benefit in distributed cases.}
 \eitm
 
 \subsubsection*{User Satisfaction}
@@ -232,11 +315,12 @@ This scenario could also apply to a commercial computing provider e.g. IBM Globa
 
 \subsubsection*{Risks}
 \bitm
-% \item REMOVE. Quantify. Large amount of FTEs required to run all services.
-\item Recruiting lots of skilled IT staff into NT1 might fail.
+\item Recruiting lots of skilled IT staff into \nnt might fail. This can be seen as a lesser risk than in~\ref{ssec:scen1} as \nnt is by nature distributed over many institutes and countries.
 \item Some \ED required services do not have synergies with current \nnt.
-\item There would need to be complicated SLA negotiations to cover all services.
-  Something essential might not covered by the agreement(s).
+\item There would need to be complicated SLA negotiations to cover all services and data confidentiality i.e. something essential might not covered by the agreement(s).
+\item As in~\ref{ssec:scen1}, all services located physically at a central site gives a single point of failure.
+  % Carl-Fredrik: still single points of failure here if location(s) of services are concentrated to site(s) close to the E3D ring? MW: Yes, this shoudl be same as scenario 1
+\item Running user-accessible computing close to the instrument is an IT security risk.
 \eitm
 
 \subsubsection*{Benefits}
@@ -246,14 +330,16 @@ This scenario could also apply to a commercial computing provider e.g. IBM Globa
 \item Recruiting into the \nnt will be easier as it is a distributed operation that can accesss a competence pool over the
   whole Nordic area. There are good synergies with home institutes of \nnt members.
 \item There is prior experience in writing service contracts for similar operations.
+%% \todo[inline,color=red]{JW: the statement below repeats the first?}
 \item \EC would be free to concentrate on running their critical services.
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
+% This is a risk, not a cost efficiency?
 \item As with Scenario 1, it may not be cost efficient for one organization (\nnt) to run all the services.
   Finding enough people with the necessary skills to run and maintain a wide variety of services is usually difficult.
-\item There is the risk of replication of already existing services run by other \einfra projects.
+\item There is the risk of replicating existing services run by other \einfra projects.
 \item Some of the required \ED services does not have synergies with existing \nnt activities.
 \eitm
 
@@ -261,7 +347,8 @@ This scenario could also apply to a commercial computing provider e.g. IBM Globa
 \bitm
 \item The reliability of some the services will be improved as the \ED addition would be an increment
   on already existing \nnt services in production.
-\item Services that are not part of the \nnt core services would not necessarily be more reliable in this scenario.
+\item Services that are not part of the \nnt core services would not necessarily be more reliable in this scenario i.e. might be impacted.
+\item {Reliability improved as it is easier for the service operators to communicate within one organization.}
 \eitm
 
 % Risks and benefits roughly the same.
@@ -279,7 +366,7 @@ This scenario could also apply to a commercial computing provider e.g. IBM Globa
   organization for help with problems or questions. Not contacting directly to other \EC colleagues.
 \item User satisfaction might be negatively impacted by a learning period for how to run many new services.
   This is the same as in scenario 1. % \nnt is not expert in some services. Should be a smaller numbers.
-\item As \nnt may have an easier time recruiting staff and using existing skills,
+\item As \nnt may have an easier time recruiting staff and using existing skills at scientific computing centers in the Nordics,
   being able to draw on wider range of experience in running services should improve the user satisfaction.
 \eitm
 
@@ -293,24 +380,39 @@ Table~\ref{tab:services:s3} shows the services that \EC would run.
 \input{site_services_s3}
 The services listed in Table~\ref{tab:services:s3} can be seen to be more likely, and suitable, to be run at the
 Skibotn site.
-Table~\ref{tab:services:s3a} gives the low and medium priority services run by \EC partners.
-It can be seen that these services are those that \EC is most likely to have expertise and interest to run at 
-(Dirac at STFC, data staging and data archive at NT1, batch compute at HPC2N,
-metadata catalog at CSC, software management at UiT, etc).
+Table~\ref{tab:services:s3a} gives the low and medium priority services run by partners and collaborators of \EC.
+These services, that can be run by \EC partners, are already part of their normal operations, for example: the DIRAC portal through EGI~\cite{egi}.
+%% or GridPP~\cite{gridpp-dirac}; 
+%% data staging and data archive at \nnt; batch computing, metadata and file catalogues at an academic computing centre. 
+%% \todo[inline]{FIX Simon: This sentence is confusing}
+%% \todo[inline]{Mattias: All the acronyms/org names are just placeholder examples, they should be replaced by generic phrasing. Possibly with the exception of NeIC NT1 due to the NeIC focus of this project.}
+%% \todo[inline,color=red]{JW: better?}
 \input{site_services_s3_bar}
 The services listed in Table~\ref{tab:services:s3a} do not necessarily need to be physically located at the \ED central site. 
 \subsubsection*{Risks}
 \bitm
-  \item Hardware and staff for running all services will be operating in different administrative regimes.
-   \item Some services maybe outsourced to unsuited partners.
-   \item SLAs need to be defined between multiple entities.
+  % \item Hardware and staff for running all services will be operating in different administrative regimes. % This is not a risk... it's the design...
+   \item {Some services maybe outsourced to unsuited partners.} %Carl-Fredrik: does this mean that we foresee outsourcing by partners beyond the control of Eiscat and NT1, e.g. SNIC deciding to buy storage from Amazon etc? Is that a problem for published data?
+   % Mattias: No, this means that it can be tricky to evaluate if a partner really is an expert in running a particular service, or only claims to be
+   \item {SLAs may not be well-defined between multiple entities.}
+   \item {If an \ED service runs on a shared service, the future provision would be dependant upon the future funding of the other projects that use the service.}
+   % \todo[inline]{If running on a shared service, the future provision would be dependant upon the future funding of the other projects that use the service.}
+   \item {Small risk that problems may be generated on services by other users.}
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
-  \item \EC would retain the control of the high-priority services.
-  \item \EC would not need to run unfamiliar services.
-  \item Services outsourced to suitable partners are run by organizations best suited and already operating such services.
+  \item {\EC would retain the control of the high-priority services.}
+  \item {\EC would not need to run unfamiliar services.}
+  %% \item {Services outsourced to suitable partners are run by organizations best suited and already operating such services.}
+  %% \todo[inline,color=red]{JW: contradicts in the risk section. remove?}
+  %% \todo[inline]{That only applies to Scenario 4 no? JW: Yes, this is probably true as scenario 4 tries to be more optimized. I will remove this benefit from 3 and put to 4.}
+  %% \todo[inline]{It applies stronger to Scenario 4, but for the "low" and "medium" services that are outsourced, most of them can probably be outsourced to suitable partners -MW}
+  \item {For the "low" and "medium" services that are outsourced, most of them can probably be outsourced to suitable partners.}
+  % Carl-Fredrik: the services most exposed to the public internet should be operated by security-aware partners, redundant systems with failover capability
+  % Mattias: Also, from an IT security point of view, a strong separation
+  %% \todo[inline,color=red]{I propose a benefit here that the separation of services is good for overall IT security. Will also add this for scenario 4.}
+  \item {A benefit in that the physical/administrative separation of services is good for overall IT security.}
 \eitm
 
 \subsubsection*{Cost Efficiency}
@@ -321,8 +423,13 @@ The services listed in Table~\ref{tab:services:s3a} do not necessarily need to b
 
 \subsubsection*{Reliability}
 \bitm
-  \item Reliability improved if services are run by operators already familiar with the services.
-  \item Organizations can improve the uptime by taking the the \ED load as a fractional increase on their existing workload.
+  \item Reliability improved as the services are run by operators already familiar with the services and the \ED load is just a fractional increase on existing workload.
+  %% \todo[inline]{This goes both ways, Reliability might go down due to a cockup with one of the other projects using the service. But hopefully you'll gain more than you loose.}
+  %% \todo[inline]{Yes, and also there might also be more resources for a big redundant and resilient setup if running, say, Rucio for 12 experiments instead of a dedicated instance for E3D -MW}
+  %% \todo[inline,color=red]{JW: I would like to add couple of lines here... Reliability can be improved by larger redundant and resilient installation for more than one user. Reliability can be impacted by problems generated by other users. Make the problem a risk... small risk}
+  \item {Reliability improved as there will be more resources (hardware/support) for a larger redundant and resilient \einfra installation running services for multiple communities.}
+  %% \todo[inline,color=red]{JW: I would like to add couple of lines here... Reliability can be improved by larger redundant and resilient installation for more than one user. Reliability can be impacted by problems generated by other users.}
+  \item {Reliability may be impacted as service operators will have to communicate between different organizations.}
 \eitm
 
 \subsubsection*{User Satisfaction}
@@ -335,28 +442,41 @@ The services listed in Table~\ref{tab:services:s3a} do not necessarily need to b
 \label{ssec:scen4}
 
 In scenario 4, \EC runs most of the services but outsources services with ``obvious'' synergies to other organizations.
-The criteria here is that an organization already runs the service required by \ED in their current normal operations.
-For example, the following services run by other organizations can be considered:
+These organizations are either current \EC partners or new partners such as \nnt or other scientific computing centres in Europe.
+The criterion is that an organization already runs the service required by \ED in their current normal operations. 
+%% Carl-Fredrik: "Criterion is" or "criteria are" ?!
+For example, the following organization run services required by \ED and can be considered similarly to Section~\ref{ssec:scen3}:
 \bitm
-  \item DIRAC User Portal~\cite{dirac} is already operated for other communities at RAL;
-  \item Identity management handled by EGI/INFN/etc for WLCG and others;
-  \item User Compute at a centre that already operates large batch/cloud services;
+  \item The DIRAC User Portal~\cite{dirac} is already operated for other communities by GridPP~\cite{gridpp-dirac} or EGI~\cite{egi};
+  % Carl-Fredrik: do all readers know what RAL, INFN etc are? I don't think that has been mentioned in the document
+  % Mattias: Yeah, these are really placeholders for more generic names, same with Scenario 3. "Infrastructure providers that are already providing this service to other communities" or something?
+  %% \item Data archiving and staging at \nnt;
+  \item Identity management services run by EGI for the Worldwide LHC Computing Grid~\cite{wlcg} and others;
+  \item Batch and academic Cloud computing at an academic computing centre that already operates large batch/cloud services;
   \item User software deployment (with someone that runs scientific computing)
   \item Data Archive, Data Staging, and Site Data Buffer could be synergistically run as one storage by NeIC NT1;
   \item Data product repository and publishing;
-  \item File catalog operated by an institute that is already running Rucio~\cite{rucio}
+  \item Metadata and file catalogues operated by an institute that is already running Rucio~\cite{rucio}
 \eitm
   
 \subsubsection*{Risks}
 \bitm
-\item Services are running in different administrative regimes.
+% \item Services are running in different administrative regimes. % As with scenario 3, I have removed this as it's not a risk...
   \item SLAs that are not well-defined. 
+  % Carl-Fredrik: scenarios 3, 4 require a single point of contact (helpdesk) for end users (scientists) who don't know who runs what. And further communication from there.
+  % This is kind of implied by the first two items here but can be elaborated...
+  \item {Small risk that problems may be generated on services by other    users. This risk can be considered as even smaller than Section~\ref{ssec:scen3}.}
 \eitm
 
 \subsubsection*{Benefits}
 \bitm
+  \item {\EC would retain the control of the high-priority services.}
+  \item {\EC would not need to run unfamiliar services.}
+  \item {A benefit in that the physical/administrative separation of services is good for overall IT security.}
   \item Services are run by organizations best suited and already operating such services.
   \item As organizations already operate the services in production mode, 24/7 coverage is more likely to be achieved.
+  % \todo[inline,color=red]{JW: New. Below. Does not change table.}
+  \item Being part of a large group of users will ease software transitions due new versions or the need to migrate to a completely different product.
 \eitm
 
 \subsubsection*{Cost Efficiency}
@@ -367,29 +487,30 @@ For example, the following services run by other organizations can be considered
 
 \subsubsection*{Reliability}
 \bitm
-\item Reliability improved as the services are run by operators already familiar with the services.
-\item Organizations can improve the uptime by taking the the \ED load as a fractional increase on their existing workload.
+\item Reliability improved as the services are run by operators already familiar with the services and the \ED load is just a fractional increase on existing workload.
+\item {Reliability improved as there will be more resources (hardware/support) for a larger redundant and resilient \einfra installation running services for multiple communities.}
+\item {Reliability may be impacted as service operators will have to communicate between different organizations.}
 \eitm
 
 \subsubsection*{User Satisfaction}
 \bitm
 \item User satisfaction may be impacted as \EC users will still have to formally contact external organizations for problems/requests.
-\item The User Satisfaction should not be negatively impacted by service interruptions as the services are now
-  run by organizations already suited to the task.
+\item The User Satisfaction should not be negatively impacted by service interruptions as the services are now run by organizations already suited to the task.
 \eitm
   
 \subsection{Scenario 5}
 \label{ssec:scen5}
 
-Scenario 5 is similar to (Section~\ref{ssec:scen3}) but in this case \nnt runs the high-priority services under a
-service contract and \EC outsources the medium and low priority services to partners.
+Scenario 5 is similar to (Section~\ref{ssec:scen3}) but in this case \nnt runs the high-priority services (as defined in Table~\ref{tab:services:s3}) under a
+service contract and \EC outsources the medium and low priority services (Table~\ref{tab:services:s3a}) to partners.
 Therefore NeIC NT1 is running the online data production and the offline services are run by partners other than \EC.
 The assumption that \EC will operate the FSRUs and inventory system still holds.
 
 \subsubsection*{Risks}
 \bitm
   \item The operations setup of NeIC NT1 is probably not suitable for running online data production.
-  \item SLAs for online data production may be hard to achieve.
+  % Carl-Fredrik: single points of failure in data transfer from E3D sites, if resources not directly on E3D ring
+  \item SLAs for online data production between \ESA and \nnt may be hard to achieve.
   \item Recruiting lots of skilled IT staff into \nnt for online operations might fail.
   \item Under-estimate by \nnt of amount of FTEs required to run online services.
   \item Other medium and low priority services may be outsourced to unsuitable partners.
@@ -397,21 +518,23 @@ The assumption that \EC will operate the FSRUs and inventory system still holds.
 
 \subsubsection*{Benefits}
 \bitm
-\item \EC can concentrate on core scientific operations.
+\item \EC can concentrate on core scientific (non-computing) operations.
+% Carl-Fredrik: services would be operated by security-aware staff on updated(?) systems
 \eitm
 
 \subsubsection*{Cost Efficiency}
 \bitm
 \item Cost efficiency for high priority services run by \nnt will probably not improve.
-  These are not an incremental addition to an alrwady-existing operation.
+  These are not an incremental addition to an already-existing operation.
   \item Cost efficiency for medium and low priority services may be improved if operators do not have to be re-trained if they are already familiar with the services.
-  \item Cost efficiency for medium and low priority services may beimproved if the partners can take in the \ED load as a fractional increase on their existing workload.
+  \item Cost efficiency for medium and low priority services may be improved if the partners can take in the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
-  \item Reliability for medium and low priority services may be improved as the services are run by operators already familiar with the services.
-  \item Reliability for high priority services run by \nnt as these services are not familiar.
+  \item The reliability for medium and low priority services will not be impacted and may improve as these services are designated to be run by operators already familiar with the services i.e. they have an obvious synergy.
+  \item The reliability for high priority services that are to be run by \nnt may suffer. \nnt is not an programme used to running online data production.
+  \item {Reliability may be impacted as service operators will have to communicate between different organizations.}
 \eitm
 
 \subsubsection*{User Satisfaction}
@@ -423,7 +546,7 @@ The assumption that \EC will operate the FSRUs and inventory system still holds.
 \subsection{Scenario 6}
 \label{ssec:scen6}
 
-In scenario 6 \nnt operates \EC{s} in-house services, that do not have obvious synergy with the \EC partners,
+In scenario 6: \nnt operates the in-house services for \EC: those that do not have obvious synergy with the \EC partners,
 under a service contract.
 This scenario has similarities to Section~\ref{ssec:scen2} and Section~\ref{ssec:scen4} but
 in this case \nnt operates EISCAT's inhouse resources under a service contract.
@@ -456,15 +579,16 @@ The assumption that \EC will operate the FSRUs and inventory system still holds.
 \subsubsection*{Cost Efficiency}
 \bitm
 \item Cost efficiency for high priority services run by \nnt will probably not improve.
-  These are not an incremental addition to an alrwady-existing operation.
+  These are not an incremental addition to an already-existing operation.
   \item Cost efficiency for medium and low priority services may be improved if operators do not have to be re-trained if they are already familiar with the services.
-  \item Cost efficiency for medium and low priority services may beimproved if the partners can take in the \ED load as a fractional increase on their existing workload.
+  \item Cost efficiency for medium and low priority services may be improved if the partners can take in the \ED load as a fractional increase on their existing workload.
 \eitm
 
 \subsubsection*{Reliability}
 \bitm
   \item Reliability for medium and low priority services may be improved as the services are run by operators already familiar with the services.
-  \item Reliability for high priority services run by \nnt as these services are not familiar.
+  \item Reliability impacted negatively for high priority services run by \nnt as these services are not familiar.
+  \item {Reliability may be impacted as service operators will have to communicate between different organizations.}
 \eitm
 
 \subsubsection*{User Satisfaction}
@@ -473,9 +597,397 @@ The assumption that \EC will operate the FSRUs and inventory system still holds.
   \item Without a clear case for improved reliability user satisfaction will suffer.
 \eitm
 
+\section{Summary}
+\label{sec:summ}
+
+The scenarios in Sections~\ref{ssec:scen1} through \ref{ssec:scen6} are summarized in Table~\ref{tab:summary} to see how the deployment of the \ED operations. 
+The summation of the factors is made with the following procedure:
+\bitm
+\item The positives and negatives in each factor are counted.
+\item Factors that were positive or negative for high-priority services were given a double weighting.
+\item If the total number factors (positive or negative) is greater than 3 then a "strongly" rating is applied.
+\eitm
+\newlength{\colwid}
+\setlength{\colwid}{1.45cm}
+\newcommand{\facc}{0.45}
+\newcommand{\faccc}{0.3}
+\newlength{\pdd}
+\setlength{\pdd}{3pt}
+\begin{table} \centering
+% \rowcolors{3}{gray!25}{white}
+%% \begin{tabular}{|p{5cm}|llllll} % Version 1
+\begin{tabular}{p{5cm}|p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid}}
+{\bf \Large Factors}& \multicolumn{6}{c}{\bf \Large \bf Scenario Section} \\[\pdd] % \cline{2-7}
+  \hline
+           & \bf \hspace{\faccc\colwid}\ref{ssec:scen1} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen2} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen3} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen4} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen5} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen6} \\[\pdd]
+\large \bf Risks             & \SN & \SN & \SN & \MN & \SN & \SN
+\\[\pdd]
+\large \bf Benefits          & \MP & \SP & \SP & \SP & \MP & \MP
+\\[\pdd]
+\large \bf Cost Efficiency   & \MN & \SN & \MP & \MP & \NU & \NU
+\\[\pdd]
+\large \bf Reliability       & \NU & \MP & \MP & \MP & \MN & \MN
+\\[\pdd]
+\large \bf User Satisfaction & \NU & \MN & \NU & \NU & \MN & \MN
+\end{tabular}
+\caption{Summary table of the factors considered for the \ED services deployment scenario sections.}
+\label{tab:summary}
+\end{table}
+
+
+Table~\ref{tab:summary} gives a visual representation of the factors.
+All scenarios carry a certain amount of risk.
+All scenarios provide benefits with three (\ref{ssec:scen2}, \ref{ssec:scen3}, \ref{ssec:scen4}) providing significant benefits.
+The two scenarios (\ref{ssec:scen1}, \ref{ssec:scen2}), where one organization runs all services are not cost efficient whereas the scenarios where services are spread are better.
+The reliability of services are seen to suffer in the scenarios (\ref{ssec:scen5}, \ref{ssec:scen6}), where high priority services could be run by unsuited hosting organizations.
+The expected user satisfaction is generally seen to vary little between the scenarios.
+
+\subsection{Most Beneficial Scenario}
+\label{ssec:best}
+
+The deployment scenario with the most promising outcome in Table~\ref{tab:summary} is~\ref{ssec:scen4}.
+% as defined by: \\ {\it ``\EC runs most of the services but outsources services with ``obvious'' synergies to other organizations. These organizations are either current \EC partners or new partners such as \nnt or other scientific computing centres in Europe. The criterion is that an organization already runs the service required by \ED in their current normal operations."}
+The risks in~\ref{ssec:scen4} and other negative aspects can be mitigated. 
+
+The Service Level Agreements can be better defined if the following steps are taken:
+\bitm
+\item Careful selection in allowing only organizations to host \ED services they already run as part of their operations.
+\item Well defined up-time and duty cycle of the \ED radar operations. 
+\item Well-defined expectation of the relation between the radar operation and the service operation.
+\item Use of existing SLAs between organizations for academic computing.
+\item Use of a standardized syntax e.g. FitSM~\cite{fitsm} within SLAs. 
+\eitm
+The other risk is that problems may be generated by other users on services shared (operated) with \ED.
+This risk is considered to be lower than in~\ref{ssec:scen3} where the low/medium services are out-sourced to partners without the requirement that the service is already run by the hosting organization.
+The risk that these problems arise can be reduced by:
+\bitm
+\item Understanding the delineations and separations within a service hosted by an organization for each client.
+\item Requiring critical parts of a service to be separated within a hosting organization.
+\eitm 
+
+It is noted in~\ref{ssec:scen4} that service reliability may be impacted as service operators will have to communicate between different organizations.
+A service may experience a break if it is dependent on another service that is not available (crash, updates, network problems etc) and run by another operator.
+\bitm
+\item In order to improve the communications between operators and \ED, a common dashboard should be used between all operators.
+\item Similarly, a common problem ticketing system can be used between all operators.
+\eitm
+In the factors for User satisfaction it is noted that there may be an impact as \ED users will still have to formally contact external organizations for problems/requests. 
+Given that some services are run by organizations other than \EC, this is unavoidable but the following action can be taken to mitigate this issue:
+\bitm
+\item Set up a single interface for \ED users to submit problem reports or service requests.
+\eitm
+
+
+% \end{center}
+% }
+
+\subsection{\nnt}
+\label{ssec:nt1}
+
+The \nnt runs data services for the Nordic Data Grid Facility~\cite{ndgf}  (NDGF) Tier-1 centre for the World-wide LHC Computing Grid~\cite{wlcg} (WLCG).
+\nnt stores $\approx 20$~PB of data for the Alice and ATLAS communities
+serving several thousands of users.
+Average data read speed is 5~GB/s with peaks at over 10~Gb/s.
+The storage for the NDGF Tier-1 is distributed across many computing centres. 
+The dCache~\cite{dcache} system, developed with contribution from NeIC, orchestrates the data stored on disks and tapes all over Scandinavia. 
+It also accepts data transfers to and from CERN and other Tier-1 centres.
+\bitm
+\item 24/7 operator on call.
+\item On-call operator is able to log in to storage \einfra on all sites in order to effect repairs and re-start services etc.
+\item Core services are repaired 24/7.
+\item Non-core services are repaired on the next working day.
+\eitm
+The effort budgeted to run the \nnt programme, based on the requirements above, is given in Table~\ref{tab:nt1}.
+\begin{table}[t] \centering
+\rowcolors{2}{gray!25}{white}
+\begin{tabular}{l|r}
+{\bf Task} & 	{\bf Target} \\
+ & 	{\bf FTE} \\ \hline
+Operator on Duty & 0.8 \\
+Management and reporting & 0.3 \\
+dCache central ops and tarpools	& 0.7 \\
+dCache development, R\&D and maintenance, incl ENDIT plugins & 1 \\
+PostgreSQL database management & 0.2 \\
+Monitoring including Nagios, 'ELK', Ganglia, Site BDII & 0.5 \\
+Automatization and basic infrastructure services for headnodes & 0.5 \\
+Site Security Officer role and security in general & 0.2 \\
+Accounting and database management & 0.25 \\
+Accounting system development and maintenance & 0.25 \\
+WLCG project participation & 1 \\
+ARC development & 0.5 \\
+NeIC community services & 0.1 \\ \hline
+{\bf SUM} & {\bf 6.3}
+\end{tabular}
+\caption{The effort targeted to run the \nnt. \label{tab:nt1}}
+\end{table}
+
+\subsection{Effort estimates}
+\label{ssec:effort}
+\iffalse
+\bitm
+\item 1-2 FTE for cluster management: linux admin, systems monitoring, and security for each administrative domain. (Very good synergies with teams that already have a fabric management setup).
+\item Beamforming and prompt computing, 0.5-1 FTE
+\item Databases, inventory, internal metadata catalog, and experiment control system 1-3 FTE
+\item Site data buffer 0.5-2 FTE (lower interval is buying "ready in a box" lustre/GPFS, higher for more flexible software on cheapish commodity hardware e.g. ceph/eos/dcache) - could also be included in data product repository for very low marginal cost.
+\item Site monitoring 0.5 - 1.5 FTE.
+\item Identity management 0.5 FTE (integration with external system) to 2-4 FTE (running your own)
+\item Dirac portal 0.5 FTE (shared infrastructure incl customization) to 2+ (running your own)
+\item Data management, including data product repository, data staging and data archive 1 FTE (part of current NT1 system + Rucio at RAL) - 4+ FTE (dedicated systems with little synergy)
+\item User compute 0.5 FTE (shared at somewhere that already runs batch computing) - 1-2 FTE (dedicated resource)
+\item User software deployment and support 0.5-3 FTE (depending on level of support)
+\item User metadata catalog - varies depending on system chosen, using the Rucio layer for collections and letting the metadata catalog have much fewer entries will ease operational burden
+\item Data product publishing 0.5 - 1 FTE
+\item Internal network operations including monitoring 0.5 - 1 FTE
+\eitm
+\fi
+The effort required to run the \einfra services for \ED are given in Table~\ref{tab:effort}.
+\include{effort_table}
+Table~\ref{tab:effort} gives the estimates to run these services on two assumptions: the ``Low Estimate" in which services are run either in a shared mode or using 
+
+The following services have a strong synergy with \nnt and can be considered
+as good candidates to be run by this programme:
+
+% Strong: Data product etc... Site data buffer; User Compute.
+
+% Medium: Cluster management... Internal network, part of databases (low level DB admin, not experiment control system).
+
+% Low: Does this make sense? 
+
+\subsection{SLAs and service management}
+\label{ssec:sla}
+
+Service Level Agreements~\cite{sla} (SLAs) define boundaries between the organizations and who has responsibility for what parts. Needs to focus on defining the common problems and encourage an atmosphere of cooperation.
+
+Service management should be carefully tuned based on the cost of failure for a particular service, but recognizing that a too formal framework will stifle creativity and efficiency. 
+Building a bridge needs strong safety standards, while writing a book needs far less legislation.
+
+Important failure modes and their costs should be identified by \EC, for instance:
+\bitm
+\item Loss of data taking due to beamformer etc failure;
+\item Loss of existing data due to storage failure;
+\item Leak of embargoed data, not intended for publication;
+\item End user needing to resubmit an analysis job due to a computer crash;
+\item Misleading metadata in catalog.
+\item ...
+\eitm
+Over-estimate of cost of failure for services can lead to inefficient service management i.e. too many resources committed to prevent a failure, and a lack of agility to adopt to new circumstances.
+Under-estimate of the cost of failure can lead to too frequent costly (economical, loss of reputation, etc) failures.
+
+Service management for data access to data should be well-defined and formalized in order to prevent leaks of embargoed data or data not intended for publication.
+Whereas the user compute \einfra, which might require new libraries and programs to be available on a shorter time-scale can have a less rigid update policy.
+
+Highly skilled staff can also help mitigate the need for highly formalized processes, in fact a highly formalized process might be detrimental to keeping highly skilled staff motivated and eager to work with the systems.
+
+A good understanding of these aspects should lead to well-written SLAs where the provider can use appropriate service management approaches for various services.
+A good example of this in academic computing is the usage of FitSM~\cite{fitsm}.
+
+\iffalse
+%% Table as of 2020/05/29 @ 16h30... new table above.
+\begin{center}
+\begin{table}
+% \rowcolors{3}{gray!25}{white}
+%% \begin{tabular}{|p{5cm}|llllll} % Version 1
+\begin{tabular}{p{5cm}|p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid}}
+{\bf \Large Factors}& \multicolumn{6}{c}{\bf \Large \bf Scenario Section} \\[\pdd] % \cline{2-7}
+  \hline
+           & \bf \hspace{\faccc\colwid}\ref{ssec:scen1} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen2} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen3} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen4} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen5} & 
+             \bf \hspace{\faccc\colwid}\ref{ssec:scen6} \\[\pdd]
+\large \bf Risks             & \SN & \SN & \SN & \MN & \SN & \SN
+\\[\pdd]
+\large \bf Benefits          & \MP & \SP & \MP & \MP & \MP & \MP
+\\[\pdd]
+\large \bf Cost Efficiency   & \MP & \SN & \MP & \MP & \MP & \NU
+\\[\pdd]
+\large \bf Reliability       & \NU & \NU & \MP & \MP & \MN & \MN
+\\[\pdd]
+\large \bf User Satisfaction & \NU & \MN & \NU & \NU & \SN & \MN
+\end{tabular}
+\caption{Summary table of the factors considered for the 6 service deployment scenario sections.}
+\label{tab:summary}
+\end{table}
+\end{center}
+\fi
+
+\iffalse
+\begin{center}
+\begin{table}
+% \rowcolors{3}{gray!25}{white}
+%% \begin{tabular}{|p{5cm}|llllll} % Version 1
+% 4.1 Cost efficiency should be strong negative, just like 4.2, for the same reasons
+\begin{tabular}{p{5cm}|p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid} p{\colwid}}
+{\bf \Large Factors}& \multicolumn{6}{c}{\bf \Large \bf Scenario} \\[\pdd] % \cline{2-7}
+  \hline
+                    & \bf 1 & \bf 2 & \bf 3 & \bf 4 & \bf 5 & \bf  6 
+\\[\pdd]
+\large \bf Risks             & \SN & \SN & \MN & \MN & \SN & \SN
+\\[\pdd]
+\large \bf Benefits          & \MP & \SP & \MP & \MP & \MP & \MP
+\\[\pdd]
+\large \bf Cost Efficiency   & \MP & \SN & \MP & \MP & \MP & \NU
+\\[\pdd]
+\large \bf Reliability       & \NU & \NU & \MP & \MP & \MN & \MN
+\\[\pdd]
+\large \bf User Satisfaction & \NU & \MN & \NU & \NU & \SN & \MN
+\end{tabular}
+\caption{Summary table of the factors considered for the 6 service deployment scenarios.}
+\label{tab:summary}
+\end{table}
+\end{center}
+\fi
+
+\iffalse
+% https://tex.stackexchange.com/questions/28087/example-of-fancy-table-using-tikz-package
+\tikzset{ 
+    table/.style={
+        matrix of nodes,
+        row sep=-\pgflinewidth,
+        column sep=-\pgflinewidth,
+        nodes={
+            rectangle,
+            draw=black,
+            align=center
+        },
+        minimum height=1.5em,
+        text depth=0.5ex,
+        text height=4ex,
+        nodes in empty cells,
+%%
+        every even row/.style={
+            nodes={fill=gray!20}
+        },
+        column 1/.style={
+            nodes={font=\bfseries}
+        },
+        row 1/.style={
+ 			minimum height=8ex,
+            nodes={
+                fill=black,
+                text=white,
+                font=\bfseries,
+            }
+        }
+    }
+}
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (first) [table,text width=5em]
+{
+% country
+% & $\begin{array}{c} \text{Internat.} \\ \text{M\euro} \end{array}$
+% & $\begin{array}{c} \text{National} \\ \text{M\euro} \end{array}$
+& $\begin{array}{c} \text{1} \\ \end{array}$
+& $\begin{array}{c} \text{2} \\ \text{TB} \end{array}$
+& $\begin{array}{c} \text{3} \\ \text{cores} \end{array}$
+& $\begin{array}{c} \text{4} \\ \text{TB} \end{array}$
+& $\begin{array}{c} \text{5} \\ \text{date} \end{array}$
+& $\begin{array}{c} \text{6} \\ \text{date} \end{array}$
+\\
+%
+Risks
+% & 0.1
+% & 0
+& 0
+& 0
+& 0
+& 0
+& {\color{red} Nov 2018}
+& test
+\\
+%
+Benefits
+% & 0.04
+% & 1
+& \cellcolor{blue!25} 950
+& 4,500
+& 3,000
+& 300
+& Nov 2018
+\\
+%
+Cost Efficiency
+% & 0.1
+% & 10
+& 2,225
+& 4,000
+& 15,240
+& 5,000
+& Nov 2018
+\\
+%
+Reliability
+% & 0.16
+% & 9
+& 2,000
+& 6,000
+& 256
+& 6,000
+& Nov 2018
+\\
+%
+User Satisfaction
+% & 0
+% & 0.3
+& 175
+& 0.1
+& 0
+& 0
+& Nov 2018
+\\
+%
+};
+\end{tikzpicture}
+\end{center}
+\fi
+
+\iffalse
+\newcommand*\up{\textcolor{yellow}{$\blacktriangle$}}
+\newcommand*\down{\textcolor{red}{$\blacktriangledown$}}
+\newcommand*\const{\textcolor{darkgray}{\textbf{--}}}
+\newcommand*\head[1]{\textbf{#1}}
+
+\newenvironment{matrixtable}[4]{%
+  \begin{tikzpicture}[matrix of nodes/.style={
+    execute at begin cell=\node\bgroup\strut,
+    execute at end cell=\egroup;}]
+  \matrix (m) [matrix of nodes,top color=blue!20,
+    bottom color=blue!80,draw=white,
+    nodes={draw,top color=blue!10,bottom color=blue!35,
+    draw,inner sep=2pt,minimum height=3.1ex},
+    column sep=1ex,row sep=0.6ex,inner sep=2ex,
+    rounded corners,column 1/.style={minimum width=#1},
+    column 2/.style={minimum width=#2},
+    column 3/.style={minimum width=#3},
+    column 4/.style={minimum width=#4}]}%
+{;\end{tikzpicture}}
+
+% \begin{frame}[fragile,bg=lightgray]
+\begin{center}
+\begin{matrixtable}{1.2cm}{2.4cm}{1.2cm}{0.6cm}{
+  \head{}   & \head{Distribution} & \head{Hits} & \\
+  Risks & Ubuntu    & 2114 & \down  \\
+  Benefits & Fedora    & 1451 & \up    \\
+  Cost Efficiency & Mint      & 1297 & \const \\
+  Reliability & OpenSUSE  & 1228 & \up    \\
+  User Satisfaction & Debian    & 910  & \down  \\
+  }
+\end{matrixtable}
+\end{center}
+\fi
 
 % end of the document...
+
 \newpage
+
 \bibliography{main}{}
 \bibliographystyle{unsrt}
 
