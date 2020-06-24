@@ -110,10 +110,10 @@ The synergies with the \nnt operations}
 \author{E3DDS Team~\footnote{
 Anders Tjulin (EISCAT) {\tt anders.tjulin@eiscat.se};
 Ari Lukkarinen (CSC) {\tt ari.lukkarinen@csc.fi};
-Assar Westman (EISCAT) {\tt Assar.Westman@eiscat.se};
+% Assar Westman (EISCAT) {\tt Assar.Westman@eiscat.se};
 Carl-Fredrik Enell (EISCAT) {\tt carl-fredrik.enell@eiscat.se};
 Dan Johan Jonsson (UiT) {\tt dan.jonsson@uit.no};
-Janos Nagy (NSC) {\tt fconagy@nsc.liu.se};
+% Janos Nagy (NSC) {\tt fconagy@nsc.liu.se};
 Harri Hellgren (EISCAT) {\tt harri.hellgren@eiscat.se};
 Ingemar H\"{a}ggstr\"{o}m (EISCAT) {\tt ingemar.haggstrom@eiscat.se};
 Mattias Wadenstein (UmU) {\tt maswan@hpc2n.umu.se};
@@ -153,7 +153,7 @@ John White (NeIC) {\tt john.white@cern.ch}}}
 This document describes the possible scenarios of deploying the \ED \einfra services with \nnt and other partners.
 The document details the services for \ED operations and those suitable or not to be run by \nnt or other partners.
 The most beneficial deployment scenario is identified according to the factors considered in this document: Risks; Benefits; Cost Efficiency; Reliability; User Satisfaction.
-Steps to remedy the negative aspects of the most beneficial scenario are presented including the Service LeveL Agreements (SLAs) needed, service management (e.g. FitSM) required and the division of responsibilities.  
+Steps to remedy the negative aspects of the most beneficial scenario are presented including the Service Level Agreements (SLAs) needed, service management (e.g. FitSM) required and the division of responsibilities.  
 Estimates of the staffing effort required to run the \ED services are presented as well as the effort to run \nnt. 
 % Carl-Fredrik: As discussed in the Zoom meeting Dan will add some notes on FitSM to D3 that can be cited
 % Dan: maybe move that section into this document?
@@ -169,7 +169,7 @@ This document does not intend to draw hard conclusions on the deployment model, 
 The intended audience of this document is \ED project management and \EC partners.
 in order to understand the deployment options for the \ED \einfra services.
 This document can be
-most efficiently deployed.
+most efficiently deployed to the \ED project management in its PDF form.
 % Carl-Fredrik: How do we best distribute this to project management (Johan Svensson and Craig)?
 % They use MS Teams, MS Word / Office 365
 
@@ -203,29 +203,26 @@ Some of these \einfra services operate in real-time i.e. must process data when 
 Other \einfra services can be considered as more in the background and
 do not have to be run in real-time e.g. data management services serving high-level processed data to \ED users.
 
-\newlength{\mycolwidth}
-\setlength{\mycolwidth}{3.0cm}
-
-\input{site_services}
-% \input{site_services_content}
-% \end{tabular}
-% \caption{The \einfra services required for \ED operations. % % \label{tab:services}}
-% \end{table}
-% \end{center}
-
 \section{\ED \einfra Services}
 
 The services shown in Table~\ref{tab:services} are those estimated, at the time of writing, to be necessary for \ED to: acquire data; process online and offline; produce data products in order to steer the radar; serve data to users for analysis.
+\newlength{\mycolwidth}
+\setlength{\mycolwidth}{3.0cm}
+\input{site_services}
 
 The radar data is used to control subsequent radar transmission and receiver look directions.
 Therefore the online computing services must run in real-time while the radar is transmitting.
 
-A service that is noted as ``run by" \EC is a service that required specialized in-house knowledge that is unlikely to be found elsewhere.
-The ``owned by" designation for a service refers to the management and ownership of the data in the service.
-For example, the ``Site data buffer" disk array could be operated by a non-\EC entity whereas the choices on the data to retain or remove from the disks are made by \EC.
-Another example could be the ``User portal web GUI" where typically operating a complex web portal is better left to experienced experts and the \EC users would access as clients where data retention etc is handled by central portal policies.
+A service that is noted as ``run by'' (or ``operated by") \EC is a service that required specialized in-house knowledge that is unlikely to be found elsewhere.
+The ``owned by'' designation for a service refers to the management and ownership of the data in the service.
+For example, the ``Site data buffer'' disk array could be run by a non-\EC entity whereas the choices on the data to retain or remove from the disks are made by \EC.
+Another example is the ``User portal web GUI'' where typically operating a complex web portal is better left to experienced experts and the \EC users would access as clients where data retention etc is handled by central portal policies.
 
-The priority of a service is defined by: {\bf 1 High:} Without this service the radar system CANNOT be run; {\bf 2 Medium:} The radar can still run but data cannot be got out of the system; {\bf 3 Low:} Radar can run and data extracted but analysis and publishing not possible.
+The priority of a service is defined by:
+\bitm
+\item {\bf 1 High:} Without this service the radar system CANNOT be run; \item {\bf 2 Medium:} The radar can still run but users cannot obtain data from the system; 
+\item{\bf 3 Low:} Radar can run and data extracted but analysis and publishing not possible.
+\eitm
 
 The following scenarios for running the \ED \einfra are considered.
 In these scenarios, the standard assumptions are:
@@ -266,7 +263,7 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 \item Retaining an excess of staff for full 24/7 coverage of \ED services during vacations/illnesses/change of employment.
 \item New security certifications of staff to operate public-facing services. Includes GDPR etc. 
 %Carl-Fredrik: the "etc" probably includes security certifications etc then
-\item Incident impact higher if everything in one place. Single point of failure. %SPOF
+\item Incident impact higher with services/hardware in one place. Single point of failure. %SPOF
 % \todo[inline]{Mattias: Running user compute etc close to the instrument is an IT security risk, so even if there on a average basis is lots of CPU capacity free on the RB nodes, it might be safer to run all computing at an external partner in order to lock down the site and raw data processing better - risk in scenario 1 and 2 or benefit to the other scenarios?}
 \item Running user-accessible computing close to the instrument is an IT security risk.
 \eitm
@@ -283,7 +280,7 @@ In this scenario \EC runs all the computing on-line and off-line services noted 
 % Finding people with enough skills to run and maintain a wide variety of services usually difficult.
 % \todo[inline]{Stronger emphasis on how it'll be a big extra cost service replication, especially complex services (both here and in scenario 2}
 \item Cost efficiency will be impacted by the extra cost required to start and run complex services in production mode. 
-Especially when considering this will replicate already existing services being run by other \einfra projects e.g. EGI Checkin~\cite{egi-checkin}.
+Especially when considering this will replicate already existing services being run by other \einfra projects e.g. EGI Check-in~\cite{egi-checkin}.
 % \todo[inline]{Low synergies with current eiscat work (mirror of scenario 2 cost efficiency)}
 \item Some services required (e.g. AAI or Web portals) for \ED operations do not have synergies with the current \EC computing expertise.
 \eitm
@@ -392,7 +389,7 @@ The services listed in Table~\ref{tab:services:s3a} do not necessarily need to b
 \subsubsection*{Risks}
 \bitm
   % \item Hardware and staff for running all services will be operating in different administrative regimes. % This is not a risk... it's the design...
-   \item {Some services maybe outsourced to unsuited partners.} %Carl-Fredrik: does this mean that we foresee outsourcing by partners beyond the control of Eiscat and NT1, e.g. SNIC deciding to buy storage from Amazon etc? Is that a problem for published data?
+   \item {Some services may be outsourced to unsuitable partners.} %Carl-Fredrik: does this mean that we foresee outsourcing by partners beyond the control of Eiscat and NT1, e.g. SNIC deciding to buy storage from Amazon etc? Is that a problem for published data?
    % Mattias: No, this means that it can be tricky to evaluate if a partner really is an expert in running a particular service, or only claims to be
    \item {SLAs may not be well-defined between multiple entities.}
    \item {If an \ED service runs on a shared service, the future provision would be dependant upon the future funding of the other projects that use the service.}
@@ -408,7 +405,7 @@ The services listed in Table~\ref{tab:services:s3a} do not necessarily need to b
   %% \todo[inline,color=red]{JW: contradicts in the risk section. remove?}
   %% \todo[inline]{That only applies to Scenario 4 no? JW: Yes, this is probably true as scenario 4 tries to be more optimized. I will remove this benefit from 3 and put to 4.}
   %% \todo[inline]{It applies stronger to Scenario 4, but for the "low" and "medium" services that are outsourced, most of them can probably be outsourced to suitable partners -MW}
-  \item {For the "low" and "medium" services that are outsourced, most of them can probably be outsourced to suitable partners.}
+  \item {For the ``low'' and ``medium'' services that are outsourced, most of them can probably be outsourced to suitable partners.}
   % Carl-Fredrik: the services most exposed to the public internet should be operated by security-aware partners, redundant systems with failover capability
   % Mattias: Also, from an IT security point of view, a strong separation
   %% \todo[inline,color=red]{I propose a benefit here that the separation of services is good for overall IT security. Will also add this for scenario 4.}
@@ -643,7 +640,7 @@ The summation of the factors is made with the following procedure:
 Table~\ref{tab:summary} gives a visual representation of the factors.
 All scenarios carry a certain amount of risk.
 All scenarios provide benefits with three (\ref{ssec:scen2}, \ref{ssec:scen3}, \ref{ssec:scen4}) providing significant benefits.
-The two scenarios (\ref{ssec:scen1}, \ref{ssec:scen2}), where one organization runs all services are not cost efficient whereas the scenarios where services are spread are better.
+The two scenarios (\ref{ssec:scen1}, \ref{ssec:scen2}), where one organization runs all services are not cost efficient whereas the scenarios where services are spread have better cost efficiency.
 The reliability of services are seen to suffer in the scenarios (\ref{ssec:scen5}, \ref{ssec:scen6}), where high priority services could be run by unsuited hosting organizations.
 The expected user satisfaction is generally seen to vary little between the scenarios.
 
@@ -723,7 +720,7 @@ ARC development & 0.5 \\
 NeIC community services & 0.1 \\ \hline
 {\bf SUM} & {\bf 6.3}
 \end{tabular}
-\caption{The effort targeted to run the \nnt. \label{tab:nt1}}
+\caption{The effort budgeted to run the \nnt. \label{tab:nt1}}
 \end{table}
 
 \subsection{Effort estimates}
@@ -745,23 +742,29 @@ NeIC community services & 0.1 \\ \hline
 \item Internal network operations including monitoring 0.5 - 1 FTE
 \eitm
 \fi
-The effort required to run the \einfra services for \ED are given in Table~\ref{tab:effort}.
+The effort required to run the \einfra services for \ED is given in Table~\ref{tab:effort}.
 \include{effort_table}
-Table~\ref{tab:effort} gives the estimates to run these services on two assumptions: the ``Low Estimate" in which services are run either in a shared mode or using 
-
-The following services have a strong synergy with \nnt and can be considered
-as good candidates to be run by this programme:
-
-% Strong: Data product etc... Site data buffer; User Compute.
-
-% Medium: Cluster management... Internal network, part of databases (low level DB admin, not experiment control system).
-
-% Low: Does this make sense? 
+Table~\ref{tab:effort} gives the estimates to run these services on two assumptions: the ``Low Estimate" in which services are run either in a shared mode or using a suitable partner as the service operator.
+The following services have a strong synergy with services currently operated by \nnt and can be considered as good candidates to be run by this programme:
+\bitm
+\item Data staging;
+\item Data archive;
+\item Site data buffer;
+\item User compute;
+\item Data archive copy;
+\item User metadata catalogue.
+\eitm
+The following services have a medium synergy with services currently operated by \nnt and might be considered as candidates to be run by this programme with more investigation:
+\bitm
+\item Cluster management;
+\item Part of the databases (low level DB admin, not experiment control system).
+\eitm 
 
 \subsection{SLAs and service management}
 \label{ssec:sla}
 
-Service Level Agreements~\cite{sla} (SLAs) define boundaries between the organizations and who has responsibility for what parts. Needs to focus on defining the common problems and encourage an atmosphere of cooperation.
+Service Level Agreements~\cite{sla} (SLAs) define boundaries between the organizations and who has responsibility for what parts. 
+In the case for \ED these SLAs need to focus on defining the common problems envisioned and encourage an atmosphere of cooperation for the overall good of science.
 
 Service management should be carefully tuned based on the cost of failure for a particular service, but recognizing that a too formal framework will stifle creativity and efficiency. 
 Building a bridge needs strong safety standards, while writing a book needs far less legislation.
@@ -991,5 +994,12 @@ User Satisfaction
 \bibliography{main}{}
 \bibliographystyle{unsrt}
 
+\newpage
+\begin{appendices}
+\newpage
+\section{Author Information}
+\label{app:authors}
+\input{authors}
+\end{appendices}
 
 \end{document}
